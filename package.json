@@ -16,7 +16,7 @@
   },
   "scripts": {
     "start": "react-scripts start",
-    "build-scss": "npx tcm src -p **/*.module.scss",
+    "build-scss": "npx tcm -p ./**/*.module.scss",
     "prebuild": "npm run build-scss",
     "build": "react-scripts build",
     "test": "react-scripts test",
