@@ -4,7 +4,7 @@ import { GameOfLife } from "./components/GameOfLife";
 
 class App extends Component {
   render() {
-    return <GameOfLife size={20} />;
+    return <GameOfLife size={20} updateInterval={1000} />;
   }
 }
 
