@@ -28,8 +28,6 @@ export class GameOfLife extends React.Component<
   }
 
   public render() {
-    console.info("GameOfLife: Render");
-
     return (
       <div className={styles.container}>
         <div className={styles.grid}>
