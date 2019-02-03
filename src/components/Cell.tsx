@@ -1,5 +1,5 @@
-import React from "react";
-import * as styles from "./Cell.module.scss";
+import React from 'react';
+import * as styles from './Cell.module.scss';
 
 interface CellProps {
   isAlive: boolean;
