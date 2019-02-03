@@ -1,0 +1,16 @@
+@mixin cell {
+  $size: 40px;
+  width: $size;
+  height: $size;
+  border: 1px solid black;
+}
+
+.alive {
+  @include cell;
+  background-color: green;
+}
+
+.dead {
+  @include cell;
+  background-color: red;
+}
