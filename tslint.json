@@ -5,7 +5,8 @@
   "rules": {
     "newline-before-return": true,
     "curly": true,
-    "interface-name": false
+    "interface-name": false,
+    "object-literal-sort-keys": false
   },
   "rulesDirectory": []
 }

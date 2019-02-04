@@ -1,7 +1,5 @@
 @mixin cell {
-  $size: 40px;
-  width: $size;
-  height: $size;
+  flex: 1 1 auto;
   border: 1px solid black;
 }
 

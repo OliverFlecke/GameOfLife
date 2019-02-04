@@ -5,6 +5,7 @@ import { GameOfLifeGrid } from './GameOfLifeGrid';
 interface GameOfLifeState {
   isRunning: boolean;
   speed: number;
+  size: number;
 }
 
 export class GameOfLife extends React.PureComponent<{}, GameOfLifeState> {
@@ -14,6 +15,7 @@ export class GameOfLife extends React.PureComponent<{}, GameOfLifeState> {
     this.state = {
       isRunning: false,
       speed: 500,
+      size: 20,
     };
   }
 
@@ -21,7 +23,7 @@ export class GameOfLife extends React.PureComponent<{}, GameOfLifeState> {
     return (
       <div>
         <GameOfLifeGrid
-          size={20}
+          size={this.state.size}
           updateInterval={this.state.speed}
           isRunning={this.state.isRunning}
         />
