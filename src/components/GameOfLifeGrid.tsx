@@ -5,6 +5,7 @@ import * as styles from './GameOfLifeGrid.module.scss';
 interface GameOfLifeGridProps {
   size: number;
   updateInterval: number;
+  isRunning: boolean;
 }
 
 interface GameOfLifeGridState {
@@ -15,6 +16,8 @@ export class GameOfLifeGrid extends React.Component<
   GameOfLifeGridProps,
   GameOfLifeGridState
 > {
+  private timer?: NodeJS.Timeout;
+
   public constructor(props: GameOfLifeGridProps) {
     super(props);
 
@@ -23,11 +26,16 @@ export class GameOfLifeGrid extends React.Component<
         .fill(null)
         .map(() => new Array(this.props.size).fill(null).map(() => false)),
     };
-
-    setInterval(() => this.update(), this.props.updateInterval);
   }
 
   public render() {
+    if (!this.props.isRunning && this.timer) {
+      clearInterval(this.timer);
+      this.timer = undefined;
+    } else if (this.props.isRunning && !this.timer) {
+      this.timer = setInterval(() => this.update(), this.props.updateInterval);
+    }
+
     return (
       <div className={styles.container}>
         <div className={styles.grid}>{this.renderGrid(this.state.cells)}</div>
