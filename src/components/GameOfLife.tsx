@@ -38,6 +38,13 @@ export class GameOfLife extends React.PureComponent<{}, GameOfLifeState> {
             value={this.state.speed}
             onChange={this.onSpeedChange}
           />
+          <input
+            type="range"
+            min="10"
+            max="100"
+            value={this.state.size}
+            onChange={this.onChangeSize}
+          />
         </div>
 
         {this.renderGameRules()}
@@ -47,6 +54,10 @@ export class GameOfLife extends React.PureComponent<{}, GameOfLifeState> {
 
   private onSpeedChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     this.setState({ speed: Number(event.target.value) });
+  };
+
+  private onChangeSize = (event: React.ChangeEvent<HTMLInputElement>) => {
+    this.setState({ size: Number(event.target.value) });
   };
 
   private togglePause = () => {

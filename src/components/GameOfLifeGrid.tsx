@@ -1,7 +1,6 @@
 import React from 'react';
 import { Cell } from './Cell';
 import * as styles from './GameOfLifeGrid.module.scss';
-import { useInterval } from './useInterval';
 
 interface GameOfLifeGridProps {
   size: number;
