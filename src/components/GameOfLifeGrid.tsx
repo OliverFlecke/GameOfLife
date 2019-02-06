@@ -1,6 +1,7 @@
 import React from 'react';
 import { Cell } from './Cell';
 import * as styles from './GameOfLifeGrid.module.scss';
+import { useInterval } from './useInterval';
 
 interface GameOfLifeGridProps {
   size: number;
@@ -28,19 +29,39 @@ export class GameOfLifeGrid extends React.Component<
     };
   }
 
-  public render() {
-    if (!this.props.isRunning && this.timer) {
-      clearInterval(this.timer);
-      this.timer = undefined;
-    } else if (this.props.isRunning && !this.timer) {
-      this.timer = setInterval(() => this.update(), this.props.updateInterval);
+  public componentDidMount() {
+    this.setInterval(this.props.updateInterval, this.props.isRunning);
+  }
+
+  public shouldComponentUpdate(nextProps: GameOfLifeGridProps): boolean {
+    if (
+      nextProps.updateInterval !== this.props.updateInterval ||
+      nextProps.isRunning !== this.props.isRunning
+    ) {
+      if (this.timer) {
+        clearInterval(this.timer!);
+      }
+      this.setInterval(nextProps.updateInterval, nextProps.isRunning);
     }
 
+    return true;
+  }
+
+  public render() {
     return (
       <div className={styles.container}>
         <div className={styles.grid}>{this.renderGrid(this.state.cells)}</div>
       </div>
     );
+  }
+
+  private setInterval(interval: number, isRunning: boolean) {
+    if (isRunning) {
+      this.timer = setInterval(() => this.update(), interval);
+    } else if (!isRunning && this.timer) {
+      clearInterval(this.timer);
+      this.timer = undefined;
+    }
   }
 
   private renderGrid(cells: boolean[][]) {

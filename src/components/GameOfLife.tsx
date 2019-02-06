@@ -31,12 +31,23 @@ export class GameOfLife extends React.PureComponent<{}, GameOfLifeState> {
           <button onClick={this.togglePause}>
             {this.state.isRunning ? 'Pause' : 'Start'}
           </button>
+          <input
+            type="range"
+            min="10"
+            max="1000"
+            value={this.state.speed}
+            onChange={this.onSpeedChange}
+          />
         </div>
 
         {this.renderGameRules()}
       </div>
     );
   }
+
+  private onSpeedChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    this.setState({ speed: Number(event.target.value) });
+  };
 
   private togglePause = () => {
     this.setState({ isRunning: !this.state.isRunning });
@@ -47,8 +58,9 @@ export class GameOfLife extends React.PureComponent<{}, GameOfLifeState> {
       <div className={styles.gameRules}>
         <p>
           The state of each cell only depends on the state from itself and it's
-          neighbors in the past iteration. Neighbors of a cell is every cell
-          that are horizontally, vertically or diagonally adjacent to the cell.
+          neighbors in the past iteration. Neighbors of a cell is every
+          cellAlthough, tag Black Panther, byt rundt p that are horizontally,
+          vertically or diagonally adjacent to the cell.
         </p>
         <h3>
           The cell's state in the next iteration is determined by the following

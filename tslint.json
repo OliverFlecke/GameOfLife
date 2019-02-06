@@ -6,7 +6,8 @@
     "newline-before-return": true,
     "curly": true,
     "interface-name": false,
-    "object-literal-sort-keys": false
+    "object-literal-sort-keys": false,
+    "no-console": false
   },
   "rulesDirectory": []
 }
